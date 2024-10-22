@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(animate);
   }
 
-  // Function to display the video after particles fade out
+  // Function to display the YouTube video after particles fade out
   function showVideo() {
     // Remove existing video container if it exists
     const existingVideoContainer = document.querySelector('#video-container');
@@ -168,88 +168,26 @@ document.addEventListener("DOMContentLoaded", () => {
       existingVideoContainer.remove();
     }
 
-    // Create the video element
-    const video = document.createElement('video');
-    video.src = '02112024.mp4'; // Replace with your video path
-    video.loop = true;
-    video.muted = false; // We want sound
-    video.style.position = 'absolute';
-    video.style.objectFit = 'cover';
-    video.style.zIndex = '2'; // Above the canvas
-    video.style.width = `${rectWidth}px`;
-    video.style.height = `${rectHeight}px`;
-    video.style.left = '0';
-    video.style.top = '0';
-
-    // Add playsinline attribute
-    video.setAttribute('playsinline', '');
-
     // Create a container for video and buttons
     const videoContainer = document.createElement('div');
-    videoContainer.id = 'video-container'; // Added an ID for easier reference
+    videoContainer.id = 'video-container';
     videoContainer.style.position = 'absolute';
     videoContainer.style.left = `${offsetX}px`;
     videoContainer.style.top = `${offsetY}px`;
     videoContainer.style.width = `${rectWidth}px`;
     videoContainer.style.height = `${rectHeight}px`;
     videoContainer.style.zIndex = '2';
-    videoContainer.appendChild(video);
 
-    // Add a play button overlay
-    const playButton = document.createElement('button');
-    playButton.id = 'play-button';
-    playButton.innerText = 'Play';
-    playButton.style.position = 'absolute';
-    playButton.style.top = '50%';
-    playButton.style.left = '50%';
-    playButton.style.transform = 'translate(-50%, -50%)';
-    playButton.style.zIndex = '3';
-    playButton.style.padding = '10px 20px';
-    playButton.style.fontSize = '16px';
-    playButton.style.cursor = 'pointer';
-    playButton.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    playButton.style.color = '#fff';
-    playButton.style.border = 'none';
-    playButton.style.borderRadius = '5px';
+    // Create the iframe for the YouTube video
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&loop=1&autoplay=1'; // Replace with your YouTube video link
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.allow = 'autoplay; encrypted-media';
+    iframe.allowFullscreen = true;
 
-    // Add event listener to the play button
-    playButton.addEventListener('click', (event) => {
-      event.stopPropagation();
-      video.play();
-      playButton.style.display = 'none'; // Hide the play button
-    });
-
-    videoContainer.appendChild(playButton);
-
-    // Add a full-screen button overlay
-    const fsButton = document.createElement('button');
-    fsButton.innerText = 'Full Screen';
-    fsButton.style.position = 'absolute';
-    fsButton.style.bottom = '10px';
-    fsButton.style.right = '10px';
-    fsButton.style.zIndex = '3';
-
-    // Adjust button size based on device
-    if (isMobileDevice()) {
-      fsButton.style.padding = '5px 10px'; // Reduced padding for mobile
-      fsButton.style.fontSize = '12px';    // Reduced font size for mobile
-    } else {
-      fsButton.style.padding = '10px 20px';
-      fsButton.style.fontSize = '16px';
-    }
-
-    fsButton.style.cursor = 'pointer';
-    fsButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    fsButton.style.color = '#fff';
-    fsButton.style.border = 'none';
-    fsButton.style.borderRadius = '5px';
-
-    // Add event listener to the full-screen button
-    fsButton.addEventListener('click', () => {
-      openFullscreen(video);
-    });
-
-    videoContainer.appendChild(fsButton);
+    videoContainer.appendChild(iframe);
     document.body.appendChild(videoContainer);
 
     // Adjust video size on window resize
@@ -293,14 +231,10 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDimensions();
     const videoContainer = document.querySelector('#video-container');
     if (videoContainer) {
-      const video = videoContainer.querySelector('video');
       videoContainer.style.left = `${offsetX}px`;
       videoContainer.style.top = `${offsetY}px`;
       videoContainer.style.width = `${rectWidth}px`;
       videoContainer.style.height = `${rectHeight}px`;
-
-      video.style.width = `${rectWidth}px`;
-      video.style.height = `${rectHeight}px`;
     }
   }
 
@@ -328,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleFullscreenChange() {
-    const videoElement = document.querySelector('#video-container video');
+    const videoElement = document.querySelector('#video-container iframe');
 
     if (!document.fullscreenElement && !document.webkitFullscreenElement) {
       // Exited full-screen mode

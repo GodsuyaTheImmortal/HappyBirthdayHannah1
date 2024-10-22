@@ -1,0 +1,17 @@
+[33mcommit 51e2432e6207734097b61b9e8e496d8de0654c57[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: GodsuyaTheImmortal <lawtq-wp20@student.tarc.edu.my>
+Date:   Wed Oct 23 00:16:07 2024 +0800
+
+    Add large video file
+
+[33mcommit a94e0ad7878f939fb1e9d354a9e3365d81231239[m
+Author: GodsuyaTheImmortal <lawtq-wp20@student.tarc.edu.my>
+Date:   Wed Oct 23 00:15:49 2024 +0800
+
+    Add .gitattributes to track large files
+
+[33mcommit 5bc0541b9e2e5e48f9a34e9de4ecb2bde3a2bee3[m
+Author: GodsuyaTheImmortal <lawtq-wp20@student.tarc.edu.my>
+Date:   Wed Oct 23 00:09:18 2024 +0800
+
+    Initial commit
