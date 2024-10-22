@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create the iframe for the YouTube video
     const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&loop=1&autoplay=1'; // Replace with your YouTube video link
+    iframe.src = 'https://youtu.be/UEKy4uJWcZo'; // Replace with your YouTube video link
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.style.border = 'none';
