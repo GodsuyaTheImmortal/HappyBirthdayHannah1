@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Background with Animated Text</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Link to the external CSS file -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Gift Box Container -->
+  <!-- <div id="gift-container" class="merrywrap">
+    <div class="giftbox">
+      <div class="cover">
+        <div></div>
+      </div>
+      <div class="box"></div>
+    </div>
+  </div> -->
+
+  <!-- Main Content (Initially Hidden) -->
+  <div id="main-content">
+    <div class="video-container">
+      <video autoplay muted loop id="background-video">
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+
+    <pointer-particles></pointer-particles>
+  </div>
+
+  <!-- Include scripts at the end of the body -->
+  <script src="script.js"></script>
+  <script src="pointer-particles.js"></script>
+</body>
+</html>
