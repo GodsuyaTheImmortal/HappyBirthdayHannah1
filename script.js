@@ -273,6 +273,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function setVhUnit() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  
+  window.addEventListener('resize', setVhUnit);
+  window.addEventListener('orientationchange', setVhUnit);
+  
+  // Call it initially
+  setVhUnit();  
+
   // Flag to ensure resize listener is added only once
   let resizeListenerAdded = false;
 
