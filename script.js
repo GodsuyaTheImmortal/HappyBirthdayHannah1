@@ -238,51 +238,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function isMobileDevice() {
-    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  }
-
-  function openFullscreen(elem) {
-    // Rotate the video on mobile devices when entering full-screen mode
-    if (isMobileDevice()) {
-      elem.classList.add('rotate-video');
-    }
-
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-      elem.msRequestFullscreen();
-    }
-
-    // Add event listener to reset rotation when exiting full-screen
-    document.addEventListener('fullscreenchange', handleFullscreenChange, { once: true });
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange, { once: true });
-  }
-
-  function handleFullscreenChange() {
-    const videoElement = document.querySelector('#video-container iframe');
-
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-      // Exited full-screen mode
-      if (isMobileDevice() && videoElement) {
-        // Reset the video rotation
-        videoElement.classList.remove('rotate-video');
-      }
-    }
-  }
-
   function setVhUnit() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
-  
+
   window.addEventListener('resize', setVhUnit);
   window.addEventListener('orientationchange', setVhUnit);
-  
+
   // Call it initially
-  setVhUnit();  
+  setVhUnit();
 
   // Flag to ensure resize listener is added only once
   let resizeListenerAdded = false;
@@ -293,12 +258,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Start the initial animation
-  initialize();function adjustVideoSize() {
+  initialize();
+
+  function adjustVideoSize() {
     const video = document.getElementById('background-video');
-    const videoAspectRatio = 16 / 9; // Change this to match your video aspect ratio
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-  
+
     if (viewportWidth / viewportHeight > videoAspectRatio) {
       // Viewport is wider than the video aspect ratio
       video.style.width = '100%';
@@ -309,11 +275,10 @@ document.addEventListener("DOMContentLoaded", () => {
       video.style.height = '100%';
     }
   }
-  
+
   window.addEventListener('resize', adjustVideoSize);
   window.addEventListener('orientationchange', adjustVideoSize);
-  
+
   // Call it initially
   adjustVideoSize();
-  
 });
