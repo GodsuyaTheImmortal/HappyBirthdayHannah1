@@ -1,5 +1,4 @@
 /* Reset default margins and padding */
-/* Reset default margins and padding */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,266 +6,114 @@
 }
 
 body {
+  margin: 0;
   overflow: hidden;
   background-color: #000; /* Set a background color if desired */
 }
 
-.merrywrap{
-  position: absolute;
-  right: 0px;
-  left: 0px;
-  bottom: 0px;
-  top: 0px;
-  background-color: #d44;
-  transition: background-color .5s ease;
-}
-.giftbox{
-  position: absolute;
-  width:300px;
-  height:200px;
-  left:50%;
-  margin-left: -150px;
-  bottom: 40px;
-  z-index:10;
-  &>div{
-    background: #34495e;
-    position: absolute;
-    &:after,&:before{
-      position: absolute;
-      content:"";
-      top: 0;
-    }
-  }
-  &:after{
-    position: absolute;
-    color:#fff;
-    width:100%;
-    content:"Click Me!";
-    left: 0;
-    bottom: 0;
-    font-size: 24px;
-    text-align: center;
-    transform:rotate(-20deg);
-    transform-origin:0 0;
-  }
-  .cover{
-    width:100%;
-    top: 0;
-    left: 0;
-    height:25%;
-    z-index:2;
-    &:before{
-      position: absolute;
-      height:100%;
-      left: 50%;
-      width:50px;  transform:translateX(-50%);
-      background:#fdc56d;
-    }
-    &>div{
-      position: absolute;
-      width:50px;
-      height:50px;
-      left:50%;
-      top:-50px; transform:translateX(-50%);
-      &:before,&:after{
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        content:"";
-        box-shadow:inset 0 0 0 15px #fdc56d;
-        border-radius:30px;
-        transform-origin:50% 100%;
-      }
-      &:before{
-        transform:translateX(-45%) skewY(40deg);
-      }
-      &:after{   transform:translateX(45%) skewY(-40deg);
-      }
-    }
-  }
-  .box{
-    right:5%;
-    left:5%;
-    height:80%;
-    bottom: 0;
-    &:before{ 
-      width:50px;
-      height:100%;
-      left:50%;
-      transform:translateX(-50%);
-      background:#fdc56d;
-    }
-    &:after{
-      width:100%;
-      height:30px;
-      background:rgba(0,0,0,0.2);
-    }
-  }
-}
-
 /* Make the video container full-screen and responsive */
 .video-container {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
 
 #background-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
-  
-  /* Hide the count and canvas elements */
-  #count,
-  #canvas {
-    display: none;
-  }
-  
-  /* Root variables */
-  :root {
-    --tile-size: 0.7vmin;
-    --distance: 1vmin;
-  }
-  
-  /* Register custom properties */
-  @property --x {
-    syntax: "<length>";
-    initial-value: 0;
-    inherits: true;
-  }
-  
-  @property --y {
-    syntax: "<length>";
-    initial-value: 0;
-    inherits: true;
-  }
-  
-  @property --scale {
-    syntax: "<number>";
-    initial-value: 1;
-    inherits: true;
-  }
-  
-  /* Tiles container */
-  #tiles {
-    position: absolute;
-    top: calc(10% - 200px); /* Move the text up by 50 pixels */
-    left: 0;
-    width: 100%;
-    height: 80%; /* Adjust as needed */
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    z-index: 1; /* Ensure tiles are above the video */
-  }  
 
-  /* Individual tiles */
-  #tiles > div {
-    border-radius: 50%;
-    width: var(--tile-size);
-    aspect-ratio: 1;
-    --color: calc(var(--p-r) * (220 - 200) + 200);
-    background: hsla(var(--color), 100%, 60%, 0.8);
-    position: absolute;
-    transform: translate3d(var(--x), var(--y), 0) scale(var(--scale));
-    --delay: calc(var(--p-r) * 1s);
-    --color: calc(var(--p-r) * (360 - 100) + 100);
-    --duration: calc(var(--p-r2) * 10s);
-  }  
-  
-  /* Animation when 'show' class is present */
-  #tiles.show > div {
-    animation: fade-in 0.3s linear forwards,
-      show var(--duration) var(--delay) cubic-bezier(0.86, 0.86, 0.41, 1.16)
-        infinite,
-      blink 1s var(--delay) ease-in-out infinite;
-  }
-  
-  /* Keyframes */
-  @keyframes blink {
-    from,
-    50%,
-    to {
-      opacity: 1;
-    }
-    30%,
-    70% {
-      opacity: 0.3;
-    }
-  }
-  
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes show {
-    from {
-      --x: calc(1dvw * var(--p-r));
-      --y: calc(-100dvh * var(--p-r));
-      filter: blur(0.5rem);
-      --scale: calc(clamp(1.5, 10 * var(--p-r2), 5));
-    }
-    5% {
-      filter: blur(0rem);
-    }
-    10% {
-      --x: calc(var(--p-x) * var(--distance));
-      --y: calc(var(--p-y) * var(--distance));
-      --scale: calc(1);
-    }
-    to {
-      --x: calc(var(--p-x) * var(--distance));
-      --y: calc(var(--p-y) * var(--distance));
-    }
-  }
-  
-  pointer-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Allow clicks to pass through */
-    z-index: 9999; /* Ensure it's above other elements */
-  }
-  
-  /* Optional: Adjust the body's overflow and margin */
-  body {
-    margin: 0;
-    overflow: hidden; /* Prevent scrollbars if not needed */
-  }
+/* Pointer particles */
+pointer-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: 9999; /* Ensure it's above other elements */
+}
 
-  button {
-    font-family: inherit;
-  }
-  
-  button:focus {
-    outline: none;
-  }
+/* Root variables */
+:root {
+  --tile-size: 0.7vmin;
+  --distance: 1vmin;
+}
 
-  .rotate-video {
-    transform: translate(-50%, -50%) rotate(90deg);
-    transform-origin: center center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 100vh !important;
-    height: 100vw !important;
-    object-fit: cover;
-  }
-  
+/* Tiles container */
+#tiles {
+  position: absolute;
+  top: calc(10% - 200px); /* Adjust as needed */
+  left: 0;
+  width: 100%;
+  height: 80%; /* Adjust as needed */
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 1; /* Ensure tiles are above the video */
+}
 
-  
+/* Individual tiles */
+#tiles > div {
+  border-radius: 50%;
+  width: var(--tile-size);
+  aspect-ratio: 1;
+  background: hsla(calc(var(--p-r) * (360 - 100) + 100), 100%, 60%, 0.8);
+  position: absolute;
+  transform: translate3d(var(--x), var(--y), 0) scale(var(--scale));
+  animation: fade-in 0.3s linear forwards,
+    show calc(var(--p-r2) * 10s) calc(var(--p-r) * 1s) cubic-bezier(0.86, 0.86, 0.41, 1.16) infinite,
+    blink 1s calc(var(--p-r) * 1s) ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes blink {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+  30%,
+  70% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes show {
+  from {
+    --x: calc(1dvw * var(--p-r));
+    --y: calc(-100dvh * var(--p-r));
+    filter: blur(0.5rem);
+    --scale: calc(clamp(1.5, 10 * var(--p-r2), 5));
+  }
+  5% {
+    filter: blur(0rem);
+  }
+  10% {
+    --x: calc(var(--p-x) * var(--distance));
+    --y: calc(var(--p-y) * var(--distance));
+    --scale: calc(1);
+  }
+  to {
+    --x: calc(var(--p-x) * var(--distance));
+    --y: calc(var(--p-y) * var(--distance));
+  }
+}
+
+/* Removed unnecessary code */
