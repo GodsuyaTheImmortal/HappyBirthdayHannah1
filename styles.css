@@ -5,8 +5,8 @@
   padding: 0;
 }
 
-body {
-  margin: 0;
+html, body {
+  height: 100%;
   overflow: hidden;
   background-color: #000; /* Set a background color if desired */
 }
@@ -115,5 +115,3 @@ pointer-particles {
     --y: calc(var(--p-y) * var(--distance));
   }
 }
-
-/* Removed unnecessary code */
