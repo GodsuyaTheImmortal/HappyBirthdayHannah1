@@ -293,5 +293,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Start the initial animation
-  initialize();
+  initialize();function adjustVideoSize() {
+    const video = document.getElementById('background-video');
+    const videoAspectRatio = 16 / 9; // Change this to match your video aspect ratio
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+  
+    if (viewportWidth / viewportHeight > videoAspectRatio) {
+      // Viewport is wider than the video aspect ratio
+      video.style.width = '100%';
+      video.style.height = 'auto';
+    } else {
+      // Viewport is taller than the video aspect ratio
+      video.style.width = 'auto';
+      video.style.height = '100%';
+    }
+  }
+  
+  window.addEventListener('resize', adjustVideoSize);
+  window.addEventListener('orientationchange', adjustVideoSize);
+  
+  // Call it initially
+  adjustVideoSize();
+  
 });
