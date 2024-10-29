@@ -4,27 +4,21 @@
   <meta charset="UTF-8">
   <title>Video Background with Animated Text</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Link to the external CSS file -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Main Content -->
   <div id="main-content">
     <div class="video-container">
-      <!-- Embedding YouTube video -->
-      <iframe
-        id="background-video"
-        src="https://www.youtube.com/embed/Q8xD0JlHNnk?si=hWYHozQQXXlVL_pP"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-      ></iframe>
+      <video autoplay muted loop id="background-video">
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
     </div>
-
+    
     <pointer-particles></pointer-particles>
   </div>
 
-  <!-- Include scripts at the end of the body -->
   <script src="script.js"></script>
   <script src="pointer-particles.js"></script>
 </body>
